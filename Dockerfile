@@ -30,6 +30,7 @@ COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libgmp.so* /usr/lib/${ARCH}-linux
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libffi.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libcom_err.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libkeyutils.so* /usr/lib/${ARCH}-linux-gnu/
+COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libcom_err.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libpq.so* /usr/lib/${ARCH}-linux-gnu/
 
 LABEL org.opencontainers.image.description="Distroless CC + libpq image for ${TARGETARCH}"
