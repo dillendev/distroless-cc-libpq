@@ -10,6 +10,9 @@ FROM gcr.io/distroless/cc-debian11 AS release
 ARG ARCH
 ARG TARGETARCH
 
+COPY --from=builder /lib/${ARCH}-linux-gnu/libkeyutils.so* /lib/${ARCH}-linux-gnu/
+COPY --from=builder /lib/${ARCH}-linux-gnu/libcom_err.so* /lib/${ARCH}-linux-gnu/
+
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libssl.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libcrypto.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libgssapi_krb5.so* /usr/lib/${ARCH}-linux-gnu/
@@ -28,9 +31,6 @@ COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libnettle.so* /usr/lib/${ARCH}-li
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libhogweed.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libgmp.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libffi.so* /usr/lib/${ARCH}-linux-gnu/
-COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libcom_err.so* /usr/lib/${ARCH}-linux-gnu/
-COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libkeyutils.so* /usr/lib/${ARCH}-linux-gnu/
-COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libcom_err.so* /usr/lib/${ARCH}-linux-gnu/
 COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libpq.so* /usr/lib/${ARCH}-linux-gnu/
 
 LABEL org.opencontainers.image.description="Distroless CC + libpq image for ${TARGETARCH}"
